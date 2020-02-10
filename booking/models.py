@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Resource(models.Model):
@@ -28,10 +29,11 @@ class Resource(models.Model):
 
 class Booking(models.Model):
     """
-    Represents a booking for a resource and a time range
+    Represents a booking for a resource and a time range, by a user
     """
 
     title = models.CharField("Objet", max_length=100)
     start_date = models.DateTimeField("Début")
     end_date = models.DateTimeField("Fin")
     resource = models.ForeignKey(Resource, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
