@@ -1,13 +1,24 @@
 from django.contrib.auth.models import User
+from django.http import HttpResponse
 from django.shortcuts import render
+from django.template import loader
 from rest_framework import viewsets
 
 from booking.models import Resource, Booking
 from booking.serializers import UserSerializer, ResourceSerializer, BookingSerializer
 
 
-# API endpoints
+# Pages
 
+def index(request):
+    context = {
+        "resources": Resource.objects.all(),
+        "bookings": Booking.objects.all(),
+    }
+    return render(request, "booking/index.html", context)
+
+
+# API endpoints
 
 class ResourceViewSet(viewsets.ModelViewSet):
     """

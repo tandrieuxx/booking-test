@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking app</title>
+</head>
+<body>
+
+<h1>Booking app</h1>
+
+<div>
+    <h2>Ressources</h2>
+    {% for resource in resources %}
+    <div>
+        <h3>{{ resource.label }}</h3>
+        <label>Type : </label><span>{{ resource.type }}</span>
+        <label>Emplacement : </label><span>{{ resource.location }}</span>
+        <label>Capacité : </label><span>{{ resource.capacity }} personne(s)</span>
+    </div>
+    {% endfor %}
+</div>
+
+<div>
+    <h2>Réservations</h2>
+    {% for booking in bookings %}
+    <div>
+        <h3>{{ booking.title }}</h3>
+        <label>Du : </label><span>{{ booking.start_date }}</span>
+        <label>Au : </label><span>{{ booking.end_date }}</span>
+        <label>Réservé par : </label><span>{{ booking.user.first_name }} {{ booking.user.last_name }}</span>
+    </div>
+    {% endfor %}
+</div>
+
+</body>
+</html>

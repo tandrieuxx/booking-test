@@ -19,12 +19,15 @@ from rest_framework import routers
 
 from booking import views
 
+# API Routes
 router = routers.DefaultRouter()
 router.register(r"resource", views.ResourceViewSet)
 router.register(r"booking", views.BookingViewSet)
 router.register(r"users", views.UserViewSet)
 
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include(router.urls)),
+    path("", views.index, name="index"),
 ]
