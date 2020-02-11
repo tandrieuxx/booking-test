@@ -1,36 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Booking app</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-<h1>Booking app</h1>
-
-<div>
-    <h2>Ressources</h2>
-    {% for resource in resources %}
-    <div>
-        <h3>{{ resource.label }}</h3>
-        <label>Type : </label><span>{{ resource.type }}</span>
-        <label>Emplacement : </label><span>{{ resource.location }}</span>
-        <label>Capacité : </label><span>{{ resource.capacity }} personne(s)</span>
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        <h2>Ressources</h2>
+        {% for resource in resources %}
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ resource.label }}</h5>
+                <label>Type : </label><span>{{ resource.type }}</span>
+                <label>Emplacement : </label><span>{{ resource.location }}</span>
+                <label>Capacité : </label><span>{{ resource.capacity }} personne(s)</span>
+            </div>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
+
+    <div class="col-md-6">
+        <h2>Réservations</h2>
+        {% for booking in bookings %}
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ booking.title }}</h5>
+                <label>Du : </label><span>{{ booking.start_date }}</span>
+                <label>Au : </label><span>{{ booking.end_date }}</span>
+                <label>Réservé par : </label><span>{{ booking.user.first_name }} {{ booking.user.last_name }}</span>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 
-<div>
-    <h2>Réservations</h2>
-    {% for booking in bookings %}
-    <div>
-        <h3>{{ booking.title }}</h3>
-        <label>Du : </label><span>{{ booking.start_date }}</span>
-        <label>Au : </label><span>{{ booking.end_date }}</span>
-        <label>Réservé par : </label><span>{{ booking.user.first_name }} {{ booking.user.last_name }}</span>
-    </div>
-    {% endfor %}
-</div>
-
-</body>
-</html>
+{% endblock %}
