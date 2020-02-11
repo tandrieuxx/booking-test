@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
-from booking.models import Resource
+from booking.models import Resource, Booking
 
 
 class ResourceSerializer(serializers.HyperlinkedModelSerializer):
@@ -12,7 +12,7 @@ class ResourceSerializer(serializers.HyperlinkedModelSerializer):
 
 class BookingSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Resource
+        model = Booking
         fields = ["title", "start_date", "end_date", "resource", "user"]
 
 
