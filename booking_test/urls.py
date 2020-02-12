@@ -31,4 +31,5 @@ urlpatterns = [
     path("api/", include(router.urls)),
     path("", views.index, name="index"),
     path("resource", views.resource, name='resource'),
+    path("booking", views.booking, name='booking'),
 ]

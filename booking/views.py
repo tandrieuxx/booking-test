@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.template import loader
 from rest_framework import viewsets
 
-from booking.forms import ResourceForm
+from booking.forms import ResourceForm, BookingForm
 from booking.models import Resource, Booking
 from booking.serializers import UserSerializer, ResourceSerializer, BookingSerializer
 
@@ -17,24 +17,28 @@ def index(request):
     context = {
         "resources": Resource.objects.all(),
         "bookings": Booking.objects.all(),
+        "resource_form": ResourceForm(),
+        "booking_form": BookingForm(),
     }
     return render(request, "booking/index.html", context)
 
 
 def resource(request):
-    # Resource form page
+    # Resource form processing
 
-    if request.method == "POST":
-        # Process creation form
-        form = ResourceForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect("/")
+    form = ResourceForm(request.POST)
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect("/")
 
-    else:
-        form = ResourceForm()
 
-    return render(request, "booking/resource.html", {"form": form})
+def booking(request):
+    # Booking form processing
+
+    form = BookingForm(request.POST)
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect("/")
 
 
 # API endpoints
