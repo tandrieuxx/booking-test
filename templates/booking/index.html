@@ -5,9 +5,11 @@
 <div class="row">
     <div class="col-md-6">
         <h2>Ressources</h2>
-        {% for resource in resources %}
+        <div id="resource-list">
+            {% for resource in resources %}
             {% include 'booking/resource.html' %}
-        {% endfor %}
+            {% endfor %}
+        </div>
 
         <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target="#resource-modal">
             Ajouter
@@ -16,9 +18,11 @@
 
     <div class="col-md-6">
         <h2>Réservations</h2>
-        {% for booking in bookings %}
+        <div id="booking-list">
+            {% for booking in bookings %}
             {% include 'booking/booking.html' %}
-        {% endfor %}
+            {% endfor %}
+        </div>
 
         <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target="#booking-modal">
             Ajouter
@@ -74,5 +78,7 @@
         </div>
     </div>
 </div>
+
+{% include 'booking/scripts.html' %}
 
 {% endblock %}

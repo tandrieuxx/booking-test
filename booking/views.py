@@ -28,8 +28,10 @@ def resource(request):
 
     form = ResourceForm(request.POST)
     if form.is_valid():
-        form.save()
-        return HttpResponseRedirect("/")
+        context = {"resource": form.save()}
+        # Return a new component for the created resource
+
+        return render(request, "booking/resource.html", context)
 
 
 def booking(request):
@@ -37,8 +39,9 @@ def booking(request):
 
     form = BookingForm(request.POST)
     if form.is_valid():
-        form.save()
-        return HttpResponseRedirect("/")
+        context = {"booking": form.save()}
+        # Return a new component for the created booking
+        return render(request, "booking/booking.html", context)
 
 
 # API endpoints
