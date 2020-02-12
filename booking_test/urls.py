@@ -30,4 +30,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include(router.urls)),
     path("", views.index, name="index"),
+    path("resource", views.resource, name='resource'),
 ]
