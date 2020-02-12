@@ -8,9 +8,9 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">{{ resource.label }}</h5>
-                <label>Type : </label><span>{{ resource.type }}</span>
-                <label>Emplacement : </label><span>{{ resource.location }}</span>
-                <label>Capacité : </label><span>{{ resource.capacity }} personne(s)</span>
+                <div><strong>Type : </strong>{{ resource.get_type_display }}</div>
+                <div><strong>Emplacement : </strong>{{ resource.location }}</div>
+                <div><strong>Capacité : </strong>{{ resource.capacity }} personne(s)</div>
             </div>
         </div>
         {% endfor %}
@@ -22,9 +22,9 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">{{ booking.title }}</h5>
-                <label>Du : </label><span>{{ booking.start_date }}</span>
-                <label>Au : </label><span>{{ booking.end_date }}</span>
-                <label>Réservé par : </label><span>{{ booking.user.first_name }} {{ booking.user.last_name }}</span>
+                <div><strong>Du : </strong>{{ booking.start_date|date:'d/m/Y H:i' }}</div>
+                <div><strong>Au : </strong>{{ booking.end_date|date:'d/m/Y H:i' }}</div>
+                <div><strong>Réservé par : </strong>{{ booking.user.first_name }} {{ booking.user.last_name }}</div>
             </div>
         </div>
         {% endfor %}
