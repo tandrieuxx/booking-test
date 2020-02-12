@@ -1,0 +1,8 @@
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">{{ booking.title }}</h5>
+        <div><strong>Du : </strong>{{ booking.start_date|date:'d/m/Y H:i' }}</div>
+        <div><strong>Au : </strong>{{ booking.end_date|date:'d/m/Y H:i' }}</div>
+        <div><strong>Réservé par : </strong>{{ booking.user.first_name }} {{ booking.user.last_name }}</div>
+    </div>
+</div>
