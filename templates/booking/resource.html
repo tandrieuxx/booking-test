@@ -1,15 +1,16 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 
-<h1>Nouvelle ressource</h1>
+<h4>Nouvelle ressource</h4>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-<form action="/resource" method="post">
+<form action="/resource" method="post" class="col-md-8">
     {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Valider">
+    {{ form|crispy }}
+    <input type="submit" value="Valider" class="btn btn-primary">
 </form>
 
 {% endblock %}
