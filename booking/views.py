@@ -1,7 +1,6 @@
 from django.contrib.auth.models import User
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
-from django.template import loader
+from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404
 from rest_framework import viewsets
 
 from booking.forms import ResourceForm, BookingForm
@@ -9,7 +8,7 @@ from booking.models import Resource, Booking
 from booking.serializers import UserSerializer, ResourceSerializer, BookingSerializer
 
 
-# Pages
+# Website requests
 
 
 def index(request):
@@ -34,6 +33,16 @@ def resource(request):
         return render(request, "booking/resource.html", context)
 
 
+def delete_resource(request):
+    # Resource deletion
+
+    id = request.POST.get("id")
+    res = get_object_or_404(Resource, id=id)
+    res.delete()
+
+    return HttpResponse(status=204)
+
+
 def booking(request):
     # Booking form processing
 
@@ -42,6 +51,16 @@ def booking(request):
         context = {"booking": form.save()}
         # Return a new component for the created booking
         return render(request, "booking/booking.html", context)
+
+
+def delete_booking(request):
+    # booking deletion
+
+    id = request.POST.get("id")
+    res = get_object_or_404(Booking, id=id)
+    res.delete()
+
+    return HttpResponse(status=204)
 
 
 # API endpoints

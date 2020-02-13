@@ -30,6 +30,8 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include(router.urls)),
     path("", views.index, name="index"),
-    path("resource", views.resource, name='resource'),
-    path("booking", views.booking, name='booking'),
+    path("resource", views.resource, name="resource"),
+    path("delete_resource", views.delete_resource, name="delete_resource"),
+    path("booking", views.booking, name="booking"),
+    path("delete_booking", views.delete_booking, name="delete_booking"),
 ]

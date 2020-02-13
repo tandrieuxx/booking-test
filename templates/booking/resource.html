@@ -1,8 +1,15 @@
-<div class="card">
+<div class="card resource">
     <div class="card-body">
         <h5 class="card-title">{{ resource.label }}</h5>
         <div><strong>Type : </strong>{{ resource.get_type_display }}</div>
         <div><strong>Emplacement : </strong>{{ resource.location }}</div>
         <div><strong>Capacité : </strong>{{ resource.capacity }} personne(s)</div>
+        <div class="mt-4">
+            <form action="#" class="delete-resource">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{resource.id}}"/>
+                <input type="submit" class="btn btn-danger" value="Supprimer"/>
+            </form>
+        </div>
     </div>
 </div>
