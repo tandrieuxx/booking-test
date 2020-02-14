@@ -26,6 +26,9 @@ class Resource(models.Model):
     location = models.CharField("Emplacement", max_length=200)
     capacity = models.IntegerField("Capacité d'accueil", default=0)
 
+    def __str__(self):
+        return self.label
+
 
 class Booking(models.Model):
     """

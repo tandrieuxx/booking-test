@@ -25,12 +25,20 @@ def index(request):
 def resource(request):
     # Resource form processing
 
-    form = ResourceForm(request.POST)
+    # If an ID is provided then an existing resource is edited, otherwise a new one is created
+    if request.POST.get("id", "") != "":
+        res = get_object_or_404(Resource, id=int(request.POST["id"]))
+        form = ResourceForm(request.POST, instance=res)
+    else:
+        form = ResourceForm(request.POST)
+
     if form.is_valid():
         context = {"resource": form.save()}
-        # Return a new component for the created resource
 
+        # Return a new component for the created or edited resource
         return render(request, "booking/resource.html", context)
+
+    # TODO : Handle invalid form
 
 
 def delete_resource(request):
@@ -46,11 +54,20 @@ def delete_resource(request):
 def booking(request):
     # Booking form processing
 
-    form = BookingForm(request.POST)
+    # If an ID is provided then an existing booking is edited, otherwise a new one is created
+    if request.POST.get("id", "") != "":
+        book = get_object_or_404(Booking, id=int(request.POST["id"]))
+        form = BookingForm(request.POST, instance=book)
+    else:
+        form = BookingForm(request.POST)
+
     if form.is_valid():
         context = {"booking": form.save()}
-        # Return a new component for the created booking
+
+        # Return a new component for the created or edited booking
         return render(request, "booking/booking.html", context)
+
+    # TODO : Handle invalid form
 
 
 def delete_booking(request):
