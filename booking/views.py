@@ -1,4 +1,4 @@
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
@@ -24,6 +24,7 @@ def index(request):
 
 
 @login_required
+@permission_required("admin")
 def resource(request):
     # Resource form processing
 
@@ -44,6 +45,7 @@ def resource(request):
 
 
 @login_required
+@permission_required("admin")
 def delete_resource(request):
     # Resource deletion
 

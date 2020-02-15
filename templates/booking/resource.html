@@ -4,13 +4,15 @@
         <div><strong>Type : </strong><span class="resource-type" data-raw-val="{{resource.type}}">{{ resource.get_type_display }}</span></div>
         <div><strong>Emplacement : </strong><span class="resource-location">{{ resource.location }}</span></div>
         <div><strong>Capacité : </strong><span class="resource-capacity">{{ resource.capacity }}</span> personne(s)</div>
-        <div class="mt-4 row">
-            <form action="#" class="delete-resource">
-                {% csrf_token %}
-                <input type="hidden" name="id" value="{{resource.id}}"/>
-                <input type="submit" class="btn btn-danger" value="Supprimer"/>
-            </form>
-            <button class="btn btn-primary" data-toggle="modal" data-target="#resource-modal" data-id="{{resource.id}}">Modifier</button>
-        </div>
+        {% if perms.admin %}
+            <div class="mt-4 row">
+                <form action="#" class="delete-resource">
+                    {% csrf_token %}
+                    <input type="hidden" name="id" value="{{resource.id}}"/>
+                    <input type="submit" class="btn btn-danger" value="Supprimer"/>
+                </form>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#resource-modal" data-id="{{resource.id}}">Modifier</button>
+            </div>
+        {% endif %}
     </div>
 </div>
