@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
@@ -10,7 +11,7 @@ from booking.serializers import UserSerializer, ResourceSerializer, BookingSeria
 
 # Website requests
 
-
+@login_required
 def index(request):
     # Home page listing resources and bookings
     context = {
@@ -22,6 +23,7 @@ def index(request):
     return render(request, "booking/index.html", context)
 
 
+@login_required
 def resource(request):
     # Resource form processing
 
@@ -41,6 +43,7 @@ def resource(request):
     # TODO : Handle invalid form
 
 
+@login_required
 def delete_resource(request):
     # Resource deletion
 
@@ -51,6 +54,7 @@ def delete_resource(request):
     return HttpResponse(status=204)
 
 
+@login_required
 def booking(request):
     # Booking form processing
 
@@ -70,6 +74,7 @@ def booking(request):
     # TODO : Handle invalid form
 
 
+@login_required
 def delete_booking(request):
     # booking deletion
 

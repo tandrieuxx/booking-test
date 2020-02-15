@@ -2,9 +2,9 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="row">
+<div class="row container-fluid justify-content-md-center">
     <div class="col-md-6">
-        <h2>Ressources</h2>
+        <h3>Ressources</h3>
         <div id="resource-list">
             {% for resource in resources %}
             {% include 'booking/resource.html' %}
@@ -17,7 +17,7 @@
     </div>
 
     <div class="col-md-6">
-        <h2>Réservations</h2>
+        <h3>Réservations</h3>
         <div id="booking-list">
             {% for booking in bookings %}
             {% include 'booking/booking.html' %}

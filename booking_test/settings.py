@@ -118,4 +118,5 @@ STATIC_URL = "/static/"
 
 # MISC
 
+LOGIN_REDIRECT_URL = "index"
 CRISPY_TEMPLATE_PACK = "bootstrap4"
