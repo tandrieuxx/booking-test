@@ -11,6 +11,7 @@ from booking.serializers import UserSerializer, ResourceSerializer, BookingSeria
 
 # Website requests
 
+
 @login_required
 def index(request):
     # Home page listing resources and bookings
@@ -63,12 +64,19 @@ def booking(request):
     # If an ID is provided then an existing booking is edited, otherwise a new one is created
     if request.POST.get("id", "") != "":
         book = get_object_or_404(Booking, id=int(request.POST["id"]))
-        form = BookingForm(request.POST, instance=book)
+        if book.user == request.user:
+            form = BookingForm(request.POST, instance=book)
+        else:
+            return HttpResponse(status=403)
     else:
         form = BookingForm(request.POST)
 
     if form.is_valid():
-        context = {"booking": form.save()}
+        # User is set to connected user
+        book = form.save(commit=False)
+        book.user = request.user
+        book.save()
+        context = {"booking": book}
 
         # Return a new component for the created or edited booking
         return render(request, "booking/booking.html", context)
