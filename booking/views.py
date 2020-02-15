@@ -14,10 +14,17 @@ from booking.serializers import UserSerializer, ResourceSerializer, BookingSeria
 
 @login_required
 def index(request):
-    # Home page listing resources and bookings
+    # Home page listing resources and user's bookings
+
+    # Admin can see all, users can see theirs only
+    if request.user.has_perm("admin"):
+        bookings = Booking.objects.all()
+    else:
+        bookings = Booking.objects.filter(user=request.user)
+
     context = {
         "resources": Resource.objects.all(),
-        "bookings": Booking.objects.all(),
+        "bookings": bookings,
         "resource_form": ResourceForm(),
         "booking_form": BookingForm(),
     }
