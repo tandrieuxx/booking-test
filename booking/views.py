@@ -1,10 +1,12 @@
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from rest_framework import viewsets
 
-from booking.forms import ResourceForm, BookingForm
+from booking.forms import ResourceForm, BookingForm, SignupForm, ProfileForm
 from booking.models import Resource, Booking
 from booking.serializers import UserSerializer, ResourceSerializer, BookingSerializer
 
@@ -100,6 +102,35 @@ def delete_booking(request):
     res.delete()
 
     return HttpResponse(status=204)
+
+
+def signup(request):
+    # Sign up a new user
+
+    if request.method == "POST":
+        form = SignupForm(request.POST)
+        profile_form = ProfileForm(request.POST)
+        if form.is_valid() and profile_form.is_valid():
+            # Save user info + profile info (for timezone)
+            form.save()
+            profile = profile_form.save(commit=False)
+            username = form.cleaned_data.get("username")
+            raw_password = form.cleaned_data.get("password1")
+            user = authenticate(username=username, password=raw_password)
+
+            profile.user = user
+            profile.save()
+
+            login(request, user)
+            return redirect("")
+    else:
+        form = SignupForm()
+        profile_form = ProfileForm()
+    return render(
+        request,
+        "registration/signup.html",
+        {"form": form, "profile_form": profile_form},
+    )
 
 
 # API endpoints

@@ -1,6 +1,8 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
-from booking.models import Resource, Booking
+from booking.models import Resource, Booking, Profile
 
 
 class ResourceForm(forms.ModelForm):
@@ -42,3 +44,24 @@ class BookingForm(forms.ModelForm):
     class Meta:
         model = Booking
         fields = ["title", "start_date", "end_date", "resource"]
+
+
+class SignupForm(UserCreationForm):
+    email = forms.EmailField(max_length=200)
+
+    class Meta:
+        model = User
+        fields = [
+            "username",
+            "first_name",
+            "last_name",
+            "email",
+            "password1",
+            "password2",
+        ]
+
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ["timezone"]

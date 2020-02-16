@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="row justify-content-md-center">
+    <div class="col-md-4">
+        <h3>Inscription</h3>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form | crispy }}
+            {{ profile_form | crispy }}
+            <input type="submit" value="S'inscrire" class="btn btn-primary"/>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

@@ -20,5 +20,6 @@ urlpatterns = [
     path("delete_resource", views.delete_resource, name="delete_resource"),
     path("booking", views.booking, name="booking"),
     path("delete_booking", views.delete_booking, name="delete_booking"),
-    path('accounts/', include('django.contrib.auth.urls')),
+    path("accounts/", include("django.contrib.auth.urls")),
+    path("accounts/signup", views.signup, name="signup"),
 ]

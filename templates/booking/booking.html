@@ -1,15 +1,17 @@
+{% load tz %}
+
 <div class="card booking" data-id="{{booking.id}}">
     <div class="card-body">
         <h5 class="card-title"><span class="booking-title">{{ booking.title }}</span></h5>
         <h6 class="card-subtitle"><span class="booking-resource" data-raw-val="{{booking.resource.id}}">{{ booking.resource.label }}</span></h6>
-        <div><strong>Du : </strong><span class="booking-start_date">{{ booking.start_date|date:'d/m/Y H:i' }}</span></div>
-        <div><strong>Au : </strong><span class="booking-end_date">{{ booking.end_date|date:'d/m/Y H:i' }}</span></div>
+        <div><strong>Du : </strong><span class="booking-start_date">{{ booking.start_date|localtime|date:'d/m/Y H:i' }}</span></div>
+        <div><strong>Au : </strong><span class="booking-end_date">{{ booking.end_date|localtime|date:'d/m/Y H:i' }}</span></div>
         <div><strong>Réservé par : </strong><span class="booking-user" data-raw-val="{{booking.user.id}}">{{ booking.user.first_name }} {{ booking.user.last_name }}</span></div>
         <div class="mt-4 row">
             <form action="#" class="delete-booking">
                 {% csrf_token %}
                 <input type="hidden" name="id" value="{{booking.id}}"/>
-                <input type="submit" class="btn btn-danger" value="Supprimer"/>
+                <input type="submit" class="btn btn-danger" value="Annuler"/>
             </form>
             <button class="btn btn-primary" data-toggle="modal" data-target="#booking-modal" data-id="{{booking.id}}">Modifier</button>
         </div>
