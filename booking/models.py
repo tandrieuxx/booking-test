@@ -1,3 +1,4 @@
+import pytz
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -40,3 +41,13 @@ class Booking(models.Model):
     end_date = models.DateTimeField("Fin")
     resource = models.ForeignKey(Resource, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
+class Profile(models.Model):
+    """
+    Model used to extend default User model
+    """
+    TIMEZONE_CHOICES = tuple(zip(pytz.all_timezones, pytz.all_timezones))
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
+    timezone = models.CharField("Fuseau horaire", max_length=50, choices=TIMEZONE_CHOICES, default="Europe/Paris")
