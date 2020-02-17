@@ -1,0 +1,92 @@
+[
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "username": "admin",
+      "password": "pbkdf2_sha256$150000$MX6E8GjBo6Cd$iQv3P3a8x/4dKntvCt4QeNXp+wRvWApc2h5TU8DYGFM=",
+      "is_superuser": true,
+      "is_staff": true,
+      "is_active": true
+    }
+  },
+  {
+    "model": "booking.profile",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "timezone": "Europe/Paris"
+    }
+  },
+  {
+    "model": "booking.resource",
+    "pk": 1,
+    "fields": {
+      "label": "Salle de conférence",
+      "type": "CONF",
+      "location": "RDC",
+      "capacity": 500
+    }
+  },
+  {
+    "model": "booking.resource",
+    "pk": 2,
+    "fields": {
+      "label": "Salle de réunion",
+      "type": "MEET",
+      "location": "1e étage",
+      "capacity": 15
+    }
+  },
+  {
+    "model": "booking.resource",
+    "pk": 3,
+    "fields": {
+      "label": "Bureau 1",
+      "type": "MISC",
+      "location": "Open Space",
+      "capacity": 1
+    }
+  },
+  {
+    "model": "booking.resource",
+    "pk": 4,
+    "fields": {
+      "label": "Bureau 2",
+      "type": "MISC",
+      "location": "Open Space",
+      "capacity": 1
+    }
+  },
+  {
+    "model": "booking.resource",
+    "pk": 5,
+    "fields": {
+      "label": "Bureau 3",
+      "type": "MISC",
+      "location": "Open Space",
+      "capacity": 1
+    }
+  },
+  {
+    "model": "booking.resource",
+    "pk": 6,
+    "fields": {
+      "label": "Projecteur 001",
+      "type": "PROJ",
+      "location": "Réserve",
+      "capacity": 0
+    }
+  },
+  {
+    "model": "booking.booking",
+    "pk": 1,
+    "fields": {
+      "title": "Conférence Python Django",
+      "start_date": "2020-02-01T08:00+01:00",
+      "end_date": "2020-02-01T12:00+01:00",
+      "resource": 1,
+      "user": 1
+    }
+  }
+]

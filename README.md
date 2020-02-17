@@ -2,6 +2,11 @@ A simple app consisting of resources, users and bookings
 
 ### Usage
 
+At first use, run these two commands :
+- `python manage.py migrate` to initiate database structure
+- `python manage.py loaddata initial` to create a basic dataset including an admin user (credentials admin/admin),
+6 resources and 1 past booking
+
 Run the development server by typing the command `python manage.py runserver`
 
 The website is accessible from localhost:8000 and the REST API from localhost:8000/api/
@@ -32,3 +37,4 @@ Visit localhost:8000/api to get URIs.
 - Secure REST API (which is not part of level 1)
 - Allow users to edit their profile (and timezone)
 - Make resource types dynamic (manageable by admin)
+- Insert newly created bookings at the right position in the list without reloading the page
