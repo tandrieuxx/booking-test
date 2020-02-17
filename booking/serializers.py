@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
-from booking.models import Resource, Booking
+from booking.models import Booking, Resource
 
 
 class ResourceSerializer(serializers.HyperlinkedModelSerializer):
