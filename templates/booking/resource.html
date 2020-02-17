@@ -1,17 +1,19 @@
+{% load i18n %}
+
 <div class="card resource" data-id="{{resource.id}}">
     <div class="card-body">
         <h5 class="card-title"><span class="resource-label">{{ resource.label }}</span></h5>
-        <div><strong>Type : </strong><span class="resource-type" data-raw-val="{{resource.type}}">{{ resource.get_type_display }}</span></div>
-        <div><strong>Emplacement : </strong><span class="resource-location">{{ resource.location }}</span></div>
-        <div><strong>Capacité : </strong><span class="resource-capacity">{{ resource.capacity }}</span> personne(s)</div>
+        <div><strong>{% trans "Type" %} : </strong><span class="resource-type" data-raw-val="{{resource.type}}">{{ resource.get_type_display }}</span></div>
+        <div><strong>{% trans "Location" %} : </strong><span class="resource-location">{{ resource.location }}</span></div>
+        <div><strong>{% trans "Capacity" %} : </strong><span class="resource-capacity">{{ resource.capacity }}</span> {% trans "people" %}</div>
         {% if perms.admin %}
             <div class="mt-4 row">
                 <form action="#" class="delete-resource">
                     {% csrf_token %}
                     <input type="hidden" name="id" value="{{resource.id}}"/>
-                    <input type="submit" class="btn btn-danger" value="Supprimer"/>
+                    <input type="submit" class="btn btn-danger" value="{% trans 'Delete' %}"/>
                 </form>
-                <button class="btn btn-primary" data-toggle="modal" data-target="#resource-modal" data-id="{{resource.id}}">Modifier</button>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#resource-modal" data-id="{{resource.id}}">{% trans "Edit" %}</button>
             </div>
         {% endif %}
     </div>

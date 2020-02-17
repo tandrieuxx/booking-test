@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
+{% load i18n %}
 
 {% block content %}
 <div class="row container-fluid justify-content-md-center">
     <div class="col-md-6">
-        <h3>Ressources</h3>
+        <h3>{% trans "Resources" %}</h3>
         <div id="resource-list">
             {% for resource in resources %}
             {% include 'booking/resource.html' %}
@@ -13,13 +14,13 @@
 
         {% if perms.admin %}
         <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target="#resource-modal">
-            Ajouter
+            {% trans "Add" %}
         </button>
         {% endif %}
     </div>
 
     <div class="col-md-6">
-        <h3>Réservations</h3>
+        <h3>{% trans "Bookings" %}</h3>
         <div id="booking-list">
             {% for booking in bookings %}
             {% include 'booking/booking.html' %}
@@ -27,7 +28,7 @@
         </div>
 
         <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target="#booking-modal">
-            Ajouter
+            {% trans "Add" %}
         </button>
     </div>
 </div>
@@ -38,7 +39,7 @@
         <div class="modal-content">
             <form action="/resource" method="post">
                 <div class="modal-header">
-                    <h5 class="modal-title">Créer une ressource</h5>
+                    <h5 class="modal-title">{% trans "Resource" %}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -49,8 +50,8 @@
                     <input type="hidden" name="id"/>
                 </div>
                 <div class="modal-footer">
-                    <input type="submit" value="Valider" class="btn btn-primary">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    <input type="submit" value="{% trans 'Validate' %}" class="btn btn-primary">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Close" %}</button>
                 </div>
             </form>
         </div>
@@ -63,7 +64,7 @@
         <div class="modal-content">
             <form action="/booking" method="post">
                 <div class="modal-header">
-                    <h5 class="modal-title">Créer une réservation</h5>
+                    <h5 class="modal-title">{% trans "Booking" %}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -74,8 +75,8 @@
                     <input type="hidden" name="id"/>
                 </div>
                 <div class="modal-footer">
-                    <input type="submit" value="Valider" class="btn btn-primary">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    <input type="submit" value="{% trans 'Validate' %}" class="btn btn-primary">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Close" %}</button>
                 </div>
 
             </form>

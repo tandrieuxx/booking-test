@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+
+{% load i18n %}
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -23,7 +26,7 @@
     <h1>Booking app</h1>
     {% if user.is_authenticated %}
     <div>
-        <h3 class="text-muted">Bienvenue, {{ user.first_name }} {{ user.last_name }} <a class="btn btn-danger" href="{% url 'logout' %}?next=/">X</a></h3>
+        <h3 class="text-muted">{% trans "Welcome" %}, {{ user.first_name }} {{ user.last_name }} <a class="btn btn-danger" href="{% url 'logout' %}?next=/">X</a></h3>
     </div>
     {% endif %}
 </div>

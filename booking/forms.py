@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.utils import timezone
+from django.utils.translation import gettext as _
 
 from booking.models import Booking, Profile, Resource
 
@@ -56,7 +57,7 @@ class BookingForm(forms.ModelForm):
         # Check if the edited or created booking is not in the past (or currently effective)
         if timezone.now() > cleaned_data.get("start_date"):
             raise ValidationError(
-                "Start date cannot be in the past", code="start_date_past"
+                _("Start date cannot be in the past"), code="start_date_past"
             )
 
 

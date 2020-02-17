@@ -1,6 +1,7 @@
 import pytz
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 
 class Resource(models.Model):
@@ -15,17 +16,17 @@ class Resource(models.Model):
     PROJECTOR = "PROJ"
     MISC = "MISC"
     TYPE_CHOICES = (
-        (MEETING_ROOM, "Salle de réunion"),
-        (CONFERENCE_ROOM, "Salle de conférence"),
-        (WORKSHOP, "Atelier"),
-        (PROJECTOR, "Projecteur vidéo"),
-        (MISC, "Divers"),
+        (MEETING_ROOM, _("Meeting room")),
+        (CONFERENCE_ROOM, _("Conference room")),
+        (WORKSHOP, _("Workshop")),
+        (PROJECTOR, _("Video projector")),
+        (MISC, _("Others")),
     )
 
-    label = models.CharField("Libellé", max_length=100)
-    type = models.CharField("Type de ressource", max_length=4, choices=TYPE_CHOICES)
-    location = models.CharField("Emplacement", max_length=200)
-    capacity = models.IntegerField("Capacité d'accueil", default=0)
+    label = models.CharField(_("Label"), max_length=100)
+    type = models.CharField(_("Resource type"), max_length=4, choices=TYPE_CHOICES)
+    location = models.CharField(_("Location"), max_length=200)
+    capacity = models.IntegerField(_("Capacity"), default=0)
 
     def __str__(self):
         return self.label
@@ -36,9 +37,9 @@ class Booking(models.Model):
     Represents a booking for a resource and a time range, by a user
     """
 
-    title = models.CharField("Objet", max_length=100)
-    start_date = models.DateTimeField("Début")
-    end_date = models.DateTimeField("Fin")
+    title = models.CharField(_("Title"), max_length=100)
+    start_date = models.DateTimeField(_("Start"))
+    end_date = models.DateTimeField(_("End"))
     resource = models.ForeignKey(Resource, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
@@ -52,7 +53,7 @@ class Profile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
     timezone = models.CharField(
-        "Fuseau horaire",
+        _("Time zone"),
         max_length=50,
         choices=TIMEZONE_CHOICES,
         default="Europe/Paris",
