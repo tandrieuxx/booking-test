@@ -10,11 +10,11 @@ def timezone_middleware(get_response):
         Middleware that activates user's timezone for each request
         """
         if request.user.is_authenticated and hasattr(request.user, "profile"):
-            selected_tz = request.user.profile.timezone
+            request.timezone = request.user.profile.timezone
         else:
-            selected_tz = TIME_ZONE
+            request.timezone = TIME_ZONE
 
-        timezone.activate(pytz.timezone(selected_tz))
+        timezone.activate(pytz.timezone(request.timezone))
 
         return get_response(request)
 

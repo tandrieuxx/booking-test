@@ -1,15 +1,15 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required, permission_required
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
+from django.utils import timezone
 from rest_framework import viewsets
 
-from booking.forms import ResourceForm, BookingForm, SignupForm, ProfileForm
-from booking.models import Resource, Booking
-from booking.serializers import UserSerializer, ResourceSerializer, BookingSerializer
-
+from booking.forms import BookingForm, ProfileForm, ResourceForm, SignupForm
+from booking.models import Booking, Resource
+from booking.serializers import (BookingSerializer, ResourceSerializer,
+                                 UserSerializer)
 
 # Website requests
 
@@ -29,6 +29,7 @@ def index(request):
         "bookings": bookings,
         "resource_form": ResourceForm(),
         "booking_form": BookingForm(),
+        "now": timezone.now(),
     }
     return render(request, "booking/index.html", context)
 
