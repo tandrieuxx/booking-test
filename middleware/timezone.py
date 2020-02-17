@@ -10,6 +10,7 @@ def timezone_middleware(get_response):
         Middleware that activates user's timezone for each request
         """
         if request.user.is_authenticated and hasattr(request.user, "profile"):
+            # Timezone is recorded in request object so it can be used in views
             request.timezone = request.user.profile.timezone
         else:
             request.timezone = TIME_ZONE

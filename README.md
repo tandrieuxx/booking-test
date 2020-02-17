@@ -2,9 +2,10 @@ A simple app consisting of resources, users and bookings
 
 ### Usage
 
-At first use, run these two commands :
+At first use, run these two commands from the project directory (booking_test):
 - `python manage.py migrate` to initiate database structure
 - `python manage.py loaddata initial` to create a basic dataset including an admin user (credentials admin/admin),
+- `django-admin compilemessages` to compile translation files
 6 resources and 1 past booking
 
 Run the development server by typing the command `python manage.py runserver`

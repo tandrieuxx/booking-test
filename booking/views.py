@@ -123,7 +123,7 @@ def signup(request):
             profile.save()
 
             login(request, user)
-            return redirect("")
+            return redirect("/")
     else:
         form = SignupForm()
         profile_form = ProfileForm()

@@ -5,6 +5,8 @@
     "fields": {
       "username": "admin",
       "password": "pbkdf2_sha256$150000$MX6E8GjBo6Cd$iQv3P3a8x/4dKntvCt4QeNXp+wRvWApc2h5TU8DYGFM=",
+      "first_name": "Anne",
+      "last_name": "Demine",
       "is_superuser": true,
       "is_staff": true,
       "is_active": true
@@ -15,7 +17,8 @@
     "pk": 1,
     "fields": {
       "user": 1,
-      "timezone": "Europe/Paris"
+      "timezone": "Europe/Paris",
+      "language": "fr"
     }
   },
   {

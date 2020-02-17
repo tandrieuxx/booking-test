@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.utils import timezone
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 
 from booking.models import Booking, Profile, Resource
 
@@ -28,6 +28,7 @@ class BookingForm(forms.ModelForm):
         fields = ["title", "start_date", "end_date", "resource"]
 
     start_date = forms.DateTimeField(
+        label=_("From"),
         input_formats=["%d/%m/%Y %H:%M"],
         widget=forms.DateTimeInput(
             attrs={
@@ -38,6 +39,7 @@ class BookingForm(forms.ModelForm):
         ),
     )
     end_date = forms.DateTimeField(
+        label=_("To"),
         input_formats=["%d/%m/%Y %H:%M"],
         widget=forms.DateTimeInput(
             attrs={
@@ -79,4 +81,4 @@ class SignupForm(UserCreationForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ["timezone"]
+        fields = ["timezone", "language"]
