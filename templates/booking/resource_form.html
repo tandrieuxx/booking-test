@@ -1,0 +1,8 @@
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+<div id="resource-form">
+    {% csrf_token %}
+    {{ resource_form|crispy }}
+    <input type="hidden" name="id"/>
+</div>

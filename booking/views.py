@@ -52,7 +52,9 @@ def resource(request):
         # Return a new component for the created or edited resource
         return render(request, "booking/resource.html", context)
 
-    # TODO : Handle invalid form
+    # If form is invalid, return the form sub-template including errors
+    context = {"resource_form": form}
+    return render(request, "booking/resource_form.html", context, status=400)
 
 
 @login_required
@@ -91,7 +93,9 @@ def booking(request):
         # Return a new component for the created or edited booking
         return render(request, "booking/booking.html", context)
 
-    # TODO : Handle invalid form
+    # If form is invalid, return the form sub-template including errors
+    context = {"booking_form": form}
+    return render(request, "booking/booking_form.html", context, status=400)
 
 
 @login_required

@@ -49,7 +49,8 @@ $(() => {
                 resourceForm.trigger("reset");
             },
             error: response => {
-                console.log(response);
+                // Replace the form with the received one containing errors
+                $("div#resource-form").replaceWith(response.responseText);
             }
         });
     });
@@ -97,7 +98,8 @@ $(() => {
                 bookingForm.trigger("reset");
             },
             error: response => {
-                console.log(response);
+                // Replace the form with the received one containing errors
+                $("div#booking-form").replaceWith(response.responseText);
             }
         });
     });

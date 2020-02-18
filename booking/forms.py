@@ -35,6 +35,7 @@ class BookingForm(forms.ModelForm):
                 "class": "form-control datetimepicker-input",
                 "data-target": "#id_start_date",
                 "data-toggle": "datetimepicker",
+                "autocomplete": "off",
             }
         ),
     )
@@ -46,6 +47,7 @@ class BookingForm(forms.ModelForm):
                 "class": "form-control datetimepicker-input",
                 "data-target": "#id_end_date",
                 "data-toggle": "datetimepicker",
+                "autocomplete": "off",
             }
         ),
     )

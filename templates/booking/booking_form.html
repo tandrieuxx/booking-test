@@ -1,0 +1,9 @@
+{% load tz %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+<div id="booking-form">
+    {% csrf_token %}
+    {{ booking_form|crispy }}
+    <input type="hidden" name="id"/>
+</div>
