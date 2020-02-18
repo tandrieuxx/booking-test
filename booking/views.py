@@ -127,7 +127,16 @@ def delete_booking(request):
 
     id = request.POST.get("id")
     res = get_object_or_404(Booking, id=id)
-    res.delete()
+
+    # User can only delete his bookings
+    if request.user == res.user or request.user.has_perm("admin"):
+        # Only if end date is not past
+        if timezone.now() < res.end_date:
+            res.delete()
+        else:
+            return HttpResponse(status=400)
+    else:
+        return HttpResponse(status=403)
 
     return HttpResponse(status=204)
 
