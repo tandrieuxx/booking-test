@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-17 23:46+0100\n"
+"POT-Creation-Date: 2020-02-18 01:44+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Théo Andrieux <tandrieux@outlook.com>\n"
 "Language: FR\n"
@@ -17,118 +17,146 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: .\forms.py:31
+#: .\booking\forms.py:31 .\templates\booking\booking.html:8
 msgid "From"
 msgstr "Du"
 
-#: .\forms.py:42
+#: .\booking\forms.py:43 .\templates\booking\booking.html:9
 msgid "To"
 msgstr "Au"
 
-#: .\forms.py:62
+#: .\booking\forms.py:64
 msgid "Start date cannot be in the past"
 msgstr "La date de début ne peut pas être dans le passé"
 
-#: .\models.py:19
+#: .\booking\forms.py:70
+#, fuzzy
+#| msgid "Start date cannot be in the past"
+msgid "Start date cannot be after end date"
+msgstr "La date de début ne peut pas être après la date de fin"
+
+#: .\booking\forms.py:78
+msgid "The resource is not available during this time range"
+msgstr "La ressource n'est pas disponible pendant cette période"
+
+#: .\booking\models.py:19
 msgid "Meeting room"
 msgstr "Salle de réunion"
 
-#: .\models.py:20
+#: .\booking\models.py:20
 msgid "Conference room"
 msgstr "Salle de conférence"
 
-#: .\models.py:21
+#: .\booking\models.py:21
 msgid "Workshop"
 msgstr "Atelier"
 
-#: .\models.py:22
+#: .\booking\models.py:22
 msgid "Video projector"
 msgstr "Projecteur vidéo"
 
-#: .\models.py:23
+#: .\booking\models.py:23
 msgid "Others"
 msgstr "Divers"
 
-#: .\models.py:26
+#: .\booking\models.py:26
 msgid "Label"
 msgstr "Libellé"
 
-#: .\models.py:27
+#: .\booking\models.py:27
 msgid "Resource type"
 msgstr "Type de ressource"
 
-#: .\models.py:28
+#: .\booking\models.py:28 .\templates\booking\resource.html:7
 msgid "Location"
 msgstr "Emplacement"
 
-#: .\models.py:29
+#: .\booking\models.py:29 .\templates\booking\resource.html:8
 msgid "Capacity"
 msgstr "Capacité d'accueil"
 
-#: .\models.py:40
+#: .\booking\models.py:40
 msgid "Title"
 msgstr "Objet"
 
-#: .\models.py:41
+#: .\booking\models.py:41
 msgid "Start"
 msgstr "Début"
 
-#: .\models.py:42
+#: .\booking\models.py:42
 msgid "End"
 msgstr "Fin"
 
-#: .\models.py:63
+#: .\booking\models.py:63
 msgid "Time zone"
 msgstr "Fuseau horaire"
 
-#: .\models.py:69
+#: .\booking\models.py:69
 msgid "Language"
 msgstr "Langue"
 
-#~ msgid "Welcome"
-#~ msgstr "Bienvenue"
+#: .\templates\base.html:28
+msgid "Welcome"
+msgstr "Bienvenue"
 
-#~ msgid "Booked by"
-#~ msgstr "Réservé par"
+#: .\templates\booking\booking.html:10
+msgid "Booked by"
+msgstr "Réservé par"
 
-#~ msgid "Cancel"
-#~ msgstr "Annuler"
+#: .\templates\booking\booking.html:16
+msgid "Cancel"
+msgstr "Annuler"
 
-#~ msgid "Edit"
-#~ msgstr "Modifier"
+#: .\templates\booking\booking.html:20 .\templates\booking\resource.html:16
+msgid "Edit"
+msgstr "Modifier"
 
-#~ msgid "Resources"
-#~ msgstr "Ressources"
+#: .\templates\booking\index.html:8
+msgid "Resources"
+msgstr "Ressources"
 
-#~ msgid "Add"
-#~ msgstr "Ajouter"
+#: .\templates\booking\index.html:17 .\templates\booking\index.html:31
+msgid "Add"
+msgstr "Ajouter"
 
-#~ msgid "Bookings"
-#~ msgstr "Réservations"
+#: .\templates\booking\index.html:23
+msgid "Bookings"
+msgstr "Réservations"
 
-#~ msgid "Resource"
-#~ msgstr "Ressource"
+#: .\templates\booking\index.html:42
+msgid "Resource"
+msgstr "Ressource"
 
-#~ msgid "Validate"
-#~ msgstr "Valider"
+#: .\templates\booking\index.html:51 .\templates\booking\index.html:74
+msgid "Validate"
+msgstr "Valider"
 
-#~ msgid "Close"
-#~ msgstr "Fermer"
+#: .\templates\booking\index.html:52 .\templates\booking\index.html:75
+msgid "Close"
+msgstr "Fermer"
 
-#~ msgid "Booking"
-#~ msgstr "Réservation"
+#: .\templates\booking\index.html:65
+msgid "Booking"
+msgstr "Réservation"
 
-#~ msgid "Type"
-#~ msgstr "Type"
+#: .\templates\booking\resource.html:6
+msgid "Type"
+msgstr "Type"
 
-#~ msgid "people"
-#~ msgstr "personne(s)"
+#: .\templates\booking\resource.html:8
+msgid "people"
+msgstr "personne(s)"
 
-#~ msgid "Delete"
-#~ msgstr "Supprimer"
+#: .\templates\booking\resource.html:14
+msgid "Delete"
+msgstr "Supprimer"
 
-#~ msgid "Sign in"
-#~ msgstr "Se connecter"
+#: .\templates\registration\login.html:9 .\templates\registration\login.html:13
+msgid "Sign in"
+msgstr "Se connecter"
 
-#~ msgid "Sign up"
-#~ msgstr "S'inscrire"
+#: .\templates\registration\login.html:14
+#: .\templates\registration\signup.html:9
+#: .\templates\registration\signup.html:14
+msgid "Sign up"
+msgstr "S'inscrire"
