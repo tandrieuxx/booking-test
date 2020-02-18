@@ -37,20 +37,28 @@ $(() => {
             url: "{% url 'resource' %}",
             data: resourceForm.serialize(),
             success: response => {
-                if(id > 0) {
-                    // In case of editing, replace the existing component with the one received
-                    $("div.resource[data-id='" + id + "']").replaceWith(response);
-                } else {
-                    // Otherwise, append the new resource component to the list
-                    $("#resource-list").append(response);
-                }
+                if(response.success) {
+                    if(id > 0) {
+                        // In case of editing, replace the existing component with the one received
+                        $("div.resource[data-id='" + id + "']").replaceWith(response.html);
+                    } else {
+                        // Append the new resource component to the list
+                        $("#resource-list").append(response.html);
+                    }
 
-                $("#resource-modal").modal("hide");
-                resourceForm.trigger("reset");
+                    $("#resource-modal").modal("hide");
+                    resourceForm.trigger("reset");
+                } else {
+                    // Replace the form with the received one containing errors
+                    $("div#resource-form").replaceWith(response.html);
+
+                    $(".datetimepicker-input").datetimepicker({
+                      format: 'DD/MM/YYYY HH:mm',
+                    });
+                }
             },
             error: response => {
-                // Replace the form with the received one containing errors
-                $("div#resource-form").replaceWith(response.responseText);
+                console.log(response);
             }
         });
     });
@@ -86,20 +94,28 @@ $(() => {
             url: "{% url 'booking' %}",
             data: bookingForm.serialize(),
             success: response => {
-                if(id > 0) {
-                    // In case of editing, replace the existing component with the one received
-                    $("div.booking[data-id='" + id + "']").replaceWith(response);
-                } else {
-                    // Append the new booking component to the list
-                    $("#booking-list").append(response);
-                }
+                if(response.success) {
+                    if(id > 0) {
+                        // In case of editing, replace the existing component with the one received
+                        $("div.booking[data-id='" + id + "']").replaceWith(response.html);
+                    } else {
+                        // Append the new booking component to the list
+                        $("#booking-list").append(response.html);
+                    }
 
-                $("#booking-modal").modal("hide");
-                bookingForm.trigger("reset");
+                    $("#booking-modal").modal("hide");
+                    bookingForm.trigger("reset");
+                } else {
+                    // Replace the form with the received one containing errors
+                    $("div#booking-form").replaceWith(response.html);
+
+                    $(".datetimepicker-input").datetimepicker({
+                      format: 'DD/MM/YYYY HH:mm',
+                    });
+                }
             },
             error: response => {
-                // Replace the form with the received one containing errors
-                $("div#booking-form").replaceWith(response.responseText);
+                console.log(response);
             }
         });
     });

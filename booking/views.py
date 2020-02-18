@@ -1,8 +1,9 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.models import User
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
+from django.template import loader
 from django.utils import timezone
 from rest_framework import viewsets
 
@@ -46,14 +47,25 @@ def resource(request):
         form = ResourceForm(request.POST)
 
     if form.is_valid():
-        context = {"resource": form.save()}
-
         # Return a new component for the created or edited resource
-        return render(request, "booking/resource.html", context)
+        context = {"resource": form.save()}
+        template = loader.get_template("booking/resource.html")
+
+        # 'success' is to tell frontend that a resource component is returned
+        return JsonResponse({
+            "success": True,
+            "html": template.render(context, request)
+        })
 
     # If form is invalid, return the form sub-template including errors
     context = {"resource_form": form}
-    return render(request, "booking/resource_form.html", context, status=400)
+    template = loader.get_template("booking/resource_form.html")
+
+    # 'success' tells frontend that a form component is returned
+    return JsonResponse({
+        "success": False,
+        "html": template.render(context, request)
+    })
 
 
 @login_required
@@ -87,14 +99,26 @@ def booking(request):
         book = form.save(commit=False)
         book.user = request.user
         book.save()
-        context = {"booking": book}
 
         # Return a new component for the created or edited booking
-        return render(request, "booking/booking.html", context)
+        context = {"booking": book}
+        template = loader.get_template("booking/booking.html")
+
+        # 'success' is to tell frontend that a booking component is returned
+        return JsonResponse({
+            "success": True,
+            "html": template.render(context, request)
+        })
 
     # If form is invalid, return the form sub-template including errors
     context = {"booking_form": form}
-    return render(request, "booking/booking_form.html", context, status=400)
+    template = loader.get_template("booking/booking_form.html")
+
+    # 'success' tells frontend that a form component is returned
+    return JsonResponse({
+        "success": False,
+        "html": template.render(context, request)
+    })
 
 
 @login_required
