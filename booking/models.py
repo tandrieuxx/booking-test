@@ -43,6 +43,21 @@ class Booking(models.Model):
     resource = models.ForeignKey(Resource, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    @classmethod
+    def check_overlap(cls, resource, start_date, end_date):
+        """
+        Check if a resource is booked during the given time range
+        :param resource: Resource to check
+        :param start_date: Start of the period to check
+        :param end_date: End of the period to check
+        :return: True if the resource is booked, False otherwise
+        """
+
+        bookings = cls.objects.filter(
+            resource=resource, start_date__lte=end_date, end_date__gte=start_date
+        )
+        return len(bookings) > 0
+
 
 class Profile(models.Model):
     """
@@ -53,21 +68,12 @@ class Profile(models.Model):
 
     FR = "fr"
     EN = "en"
-    LANGUAGE_CHOICES = (
-        (EN, "English"),
-        (FR, "Français")
-    )
+    LANGUAGE_CHOICES = ((EN, "English"), (FR, "Français"))
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
     timezone = models.CharField(
-        _("Time zone"),
-        max_length=50,
-        choices=TIMEZONE_CHOICES,
-        default="Europe/Paris",
+        _("Time zone"), max_length=50, choices=TIMEZONE_CHOICES, default="Europe/Paris",
     )
     language = models.CharField(
-        _("Language"),
-        max_length=10,
-        choices=LANGUAGE_CHOICES,
-        default=EN,
+        _("Language"), max_length=10, choices=LANGUAGE_CHOICES, default=EN,
     )

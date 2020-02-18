@@ -8,8 +8,7 @@ from rest_framework import viewsets
 
 from booking.forms import BookingForm, ProfileForm, ResourceForm, SignupForm
 from booking.models import Booking, Resource
-from booking.serializers import (BookingSerializer, ResourceSerializer,
-                                 UserSerializer)
+from booking.serializers import BookingSerializer, ResourceSerializer, UserSerializer
 
 # Website requests
 
@@ -37,7 +36,7 @@ def index(request):
 @login_required
 @permission_required("admin")
 def resource(request):
-    # Resource form processing
+    """Resource form processing"""
 
     # If an ID is provided then an existing resource is edited, otherwise a new one is created
     if request.POST.get("id", "") != "":
@@ -60,7 +59,7 @@ def resource(request):
 @login_required
 @permission_required("admin")
 def delete_resource(request):
-    # Resource deletion
+    """Resource deletion"""
 
     id = request.POST.get("id")
     res = get_object_or_404(Resource, id=id)
@@ -71,7 +70,7 @@ def delete_resource(request):
 
 @login_required
 def booking(request):
-    # Booking form processing
+    """Booking form processing"""
 
     # If an ID is provided then an existing booking is edited, otherwise a new one is created
     if request.POST.get("id", "") != "":
@@ -100,7 +99,7 @@ def booking(request):
 
 @login_required
 def delete_booking(request):
-    # booking deletion
+    """booking deletion"""
 
     id = request.POST.get("id")
     res = get_object_or_404(Booking, id=id)
@@ -110,13 +109,13 @@ def delete_booking(request):
 
 
 def signup(request):
-    # Sign up a new user
+    """Sign up a new user"""
 
     if request.method == "POST":
         form = SignupForm(request.POST)
         profile_form = ProfileForm(request.POST)
         if form.is_valid() and profile_form.is_valid():
-            # Save user info + profile info (for timezone)
+            # Save user info + profile info (for timezone and language)
             form.save()
             profile = profile_form.save(commit=False)
             username = form.cleaned_data.get("username")
