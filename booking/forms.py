@@ -64,6 +64,23 @@ class BookingForm(forms.ModelForm):
                 _("Start date cannot be in the past"), code="start_date_past"
             )
 
+        # Check if start_date is before end_date
+        if cleaned_data.get("end_date") < cleaned_data.get("start_date"):
+            raise ValidationError(
+                _("Start date cannot be after end date"), code="end_before_start"
+            )
+
+        # Check if the dates don't overlap an existing booking
+        if Booking.check_overlap(
+            cleaned_data.get("resource"),
+            cleaned_data["start_date"],
+            cleaned_data["end_date"],
+        ):
+            raise ValidationError(
+                _("The resource is not available during this time range"),
+                code="not_available",
+            )
+
 
 class SignupForm(UserCreationForm):
     email = forms.EmailField(max_length=200)
