@@ -5,13 +5,13 @@ A simple app consisting of resources, users and bookings
 Requires Python 3.6
 
 At first use, run these commands from the project directory (booking_test):
-- (optional) `python -m venv env` to create a virtual environment
+- (optional) `python -m venv env` to create a virtual environment (requires virtualenv)
 - (optional) `.\env\Scripts\activate` on Windows or `source env/bin/activate` on Linux and OS X to activate the virtual
 environment
-- `pip install requirements.txt` to install python dependencies
+- `pip install -r requirements.txt` to install python dependencies
 - `python manage.py migrate` to initiate database structure
 - `python manage.py loaddata initial` to create a basic dataset including an admin user (credentials admin/admin),
-- `django-admin compilemessages` to compile translation files
+- `django-admin compilemessages` to compile translation files (requires gettext)
 6 resources and 1 past booking
 
 Run the development server by typing the command `python manage.py runserver` after activating the virtual environment
