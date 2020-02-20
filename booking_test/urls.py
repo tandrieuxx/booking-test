@@ -21,4 +21,5 @@ urlpatterns = [
     path("delete_booking", views.delete_booking, name="delete_booking"),
     path("accounts/", include("django.contrib.auth.urls")),
     path("accounts/signup", views.signup, name="signup"),
+    path("accounts/profile", views.profile, name="profile"),
 ]

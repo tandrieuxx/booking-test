@@ -16,7 +16,7 @@ from booking.serializers import BookingSerializer, ResourceSerializer, UserSeria
 
 @login_required
 def index(request):
-    # Home page listing resources and user's bookings
+    """Home page listing resources and user's bookings"""
 
     # Admin can see all, users can see theirs only
     if request.user.has_perm("admin"):
@@ -29,6 +29,7 @@ def index(request):
         "bookings": bookings,
         "resource_form": ResourceForm(),
         "booking_form": BookingForm(),
+        "profile_form": ProfileForm(instance=request.user.profile),
         "now": timezone.now(),
     }
     return render(request, "booking/index.html", context)
@@ -168,6 +169,17 @@ def signup(request):
         "registration/signup.html",
         {"form": form, "profile_form": profile_form},
     )
+
+
+@login_required
+def profile(request):
+    """Profile edit form processing"""
+
+    if request.method == "POST":
+        form = ProfileForm(request.POST, instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+    return redirect("/")
 
 
 # API endpoints

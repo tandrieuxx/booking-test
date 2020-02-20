@@ -1,6 +1,7 @@
 {% block javascript %}
 <script>
 $(() => {
+    // Activate datetimepicker widget
     $(".datetimepicker-input").datetimepicker({
       format: 'DD/MM/YYYY HH:mm',
     });
@@ -37,6 +38,7 @@ $(() => {
             url: "{% url 'resource' %}",
             data: resourceForm.serialize(),
             success: response => {
+                // Check success flag in JSON response
                 if(response.success) {
                     if(id > 0) {
                         // In case of editing, replace the existing component with the one received
@@ -94,6 +96,7 @@ $(() => {
             url: "{% url 'booking' %}",
             data: bookingForm.serialize(),
             success: response => {
+                // Check success flag in JSON response
                 if(response.success) {
                     if(id > 0) {
                         // In case of editing, replace the existing component with the one received
